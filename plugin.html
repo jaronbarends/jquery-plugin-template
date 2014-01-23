@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>jQuery Plugin Template</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="demo/css/demo.css">
+</head>
+
+<body>
+	<h1>jQuery Plugin Template</h1>
+
+
+	<div id="someElement" class="pluginElement">
+		<div class="pluginContent"></div>
+		<script>
+			/* zorg dat objectstructuur aanwezig is */
+			window.EFCS = window.EFCS || {};
+			EFCS.plugins = EFCS.plugins || {};
+			EFCS.plugins.pluginname = EFCS.plugins.pluginname || {};
+			EFCS.plugins.pluginname.instances = EFCS.plugins.pluginname.instances || [];
+			
+			//push object met settings voor deze instance in array; wordt dan on dom ready geinitialiseerd
+			EFCS.plugins.pluginname.instances.push({
+				selector: "#someElement .pluginContent",
+				options: {
+					someVar: "A new value",
+					someOtherVar: "Another new value"
+				}
+			});
+		</script>
+	</div>
+
+	<!-- some random html -->
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, tempora incidunt libero repudiandae soluta totam sapiente error non natus officiis maxime alias cupiditate ullam excepturi iste magnam quisquam praesentium nisi.
+		</p>
+	<!-- /some random html -->
+
+	<div id="someElement2" class="pluginElement">
+		<script>
+			//en een tweede instance definieren; de hele zut van window.EFCS = window.EFCS || {}... hoef je niet nog een keer toe te voegen (maar als je het wel doet breekt er niets)
+			EFCS.plugins.pluginname.instances.push({
+				selector: "#someElement2",
+				options: {
+					someVar: "A new value for #2",
+					someOtherVar: "Another new value for #2"
+				}
+			});
+		</script>
+	</div>
+
+	<div id="someElement3" class="pluginElement"></div>
+	
+
+	<!-- some random html -->
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, tempora incidunt libero repudiandae soluta totam sapiente error non natus officiis maxime alias cupiditate ullam excepturi iste magnam quisquam praesentium nisi.
+		</p>
+
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, tempora incidunt libero repudiandae soluta totam sapiente error non natus officiis maxime alias cupiditate ullam excepturi iste magnam quisquam praesentium nisi.
+		</p>
+	<!-- /some random html -->
+
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="js/jquery.pluginname.js"></script>
+	
+	<script>
+		//maar zo kan het ook nog steeds, een plugin in de pagina initialiseren:
+		jQuery(document).ready(function($) {
+			$("#someElement3").pluginname({
+				someVar: "A new value for #3",
+				someOtherVar: "Another new value for #3"
+			});
+		});
+	</script>
+</body>
+</html>
